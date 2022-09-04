@@ -19,10 +19,10 @@ class BookController(
         return bookService.getAll()
     }
 
-    @GetMapping("/books/{id}")
-    fun get(@PathVariable id: Int): Mono<Book> {
-        return bookService.getBook(id)
-    }
+//    @GetMapping("/books/{id}")
+//    fun get(@PathVariable id: Long): Mono<Book> {
+//        return bookService.getBook(id)
+//    }
 
     @PostMapping("/books")
     fun create(@RequestBody request: Map<String, Any>): Mono<Book> {
@@ -30,7 +30,12 @@ class BookController(
     }
 
     @DeleteMapping("/books/{id}")
-    fun delete(@PathVariable id: Int) : Mono<Void> {
+    fun delete(@PathVariable id: Long) : Mono<Void> {
         return bookService.delete(id)
+    }
+
+    @GetMapping("/books/{name}")
+    fun getByName(@PathVariable name: String) : Mono<Book> {
+        return bookService.getBookBy(name)
     }
 }
